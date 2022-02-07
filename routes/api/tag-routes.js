@@ -12,6 +12,7 @@ router.get('/', async(req, res) => {
     })
     res.status(200).json(tagsData)
   } catch (err){
+    console.log(err)
     res.status(500).json(err)
   }
 });
@@ -27,6 +28,8 @@ router.get('/:id', async (req, res) => {
     if(!tagData){
       res.status(400).json({message: 'No tag is associaited with that id'})
     }
+
+    res.status(200).json(tagData)
   } catch (err){
     res.status(500).json(err)
   }
@@ -60,12 +63,14 @@ router.put('/:id', async(req, res) => {
     if(!tagData){
       res.status(500).json({message:'No tag is associated with that id'})
     }
+
+    res.status(200).json('Tag Updated')
   } catch (err){
     res.status(400).json(err)
   }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
   try{
     const tagData = await Tag.destroy({
@@ -77,7 +82,7 @@ router.delete('/:id', (req, res) => {
       if(!tagData){
         res.status(500).json('No tag associated with that id')
       }
-      res.status(200).json(tagData);
+      res.status(200).json('Tag deleted');
   } catch (err){
     res.status(400).json(err)
   }

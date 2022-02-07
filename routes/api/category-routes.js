@@ -63,7 +63,7 @@ router.put('/:id', async(req, res) => {
       res.status(400).json({message:'No category is associated with that id'})
     }
 
-    res.status(200).json(categoriesData)
+    res.status(200).json({message: 'Category updated'})
   } catch (err) {
     res.status(500).json(err);
   }
@@ -81,7 +81,7 @@ router.delete('/:id', async(req, res) => {
     if(!categoriesData){
       res.status(400).json({message: 'No category is associated with that id'})
     }
-    res.status(200).json(categoriesData);
+    res.status(200).json({message: 'Category deleted'});
   } catch (err) {
     res.status(500).json(err);
   }
